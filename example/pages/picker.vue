@@ -2,16 +2,21 @@
   <div class="page-with-padding">
     <wv-button type="default" @click.native="showPopup">显示弹出层</wv-button>
 
-    <wv-picker></wv-picker>
+    <wv-picker :visible="pickerVisible"></wv-picker>
   </div>
 </template>
 
 <script type="text/babel">
-// import { PickerSlot } from './picker-slot.vue'
 export default {
+  data () {
+    return {
+      pickerVisible: true
+    }
+  },
+
   methods: {
     showPopup () {
-      console.log(123)
+      this.pickerVisible = true
     }
   }
 }

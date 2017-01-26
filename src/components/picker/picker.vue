@@ -31,6 +31,7 @@ export default {
       type: String,
       default: '取消'
     },
+    slots: () => [],
     value: {}
   },
 
@@ -57,8 +58,22 @@ export default {
     },
 
     confirm () {
-      this.visible = false
+      // this.visible = false
     }
+  },
+
+  watch: {
+    value (val) {
+      this.currentValue = val
+    },
+
+    currentValue (val) {
+      this.$emit('input', val)
+    }
+  },
+
+  destroyed () {
+    //
   }
 }
 </script>
