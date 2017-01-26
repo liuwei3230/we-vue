@@ -147,10 +147,12 @@ export default {
     },
 
     onValueChange () {
-      // let value = this.currentValue
-      // let wrapper = this.$refs.listWrapper
+      let value = this.currentValue
+      let wrapper = this.$refs.listWrapper
 
-      // wrapper.translateY = this.value2translate(value)
+      console.log(value)
+
+      wrapper.translateY = this.value2translate(value)
     },
 
     onValuesChange () {
