@@ -150,8 +150,6 @@ export default {
       let value = this.currentValue
       let wrapper = this.$refs.listWrapper
 
-      console.log(value)
-
       wrapper.translateY = this.value2translate(value)
     },
 

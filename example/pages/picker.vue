@@ -2,7 +2,7 @@
   <div class="page-with-padding">
     <wv-button type="default" @click.native="showPopup">显示弹出层</wv-button>
 
-    <wv-picker :visible="pickerVisible"></wv-picker>
+    <wv-picker :visible="pickerVisible" :slots="slots"></wv-picker>
   </div>
 </template>
 
@@ -10,7 +10,19 @@
 export default {
   data () {
     return {
-      pickerVisible: true
+      pickerVisible: true,
+      slots: [
+        {
+          values: [
+            '汽车票',
+            '飞机票',
+            '火车票',
+            '轮船票',
+            '其它'
+          ],
+          valueIndex: 1
+        }
+      ]
     }
   },
 
