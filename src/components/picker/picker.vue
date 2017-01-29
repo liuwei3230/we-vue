@@ -1,5 +1,5 @@
 <template>
-  <wv-popup v-show="visible">
+  <wv-popup v-show="currentValue">
     <div class="weui-picker__hd">
       <a href="javascript:;" class="weui-picker__action" @click="cancel">{{ cancelText }}</a>
       <a href="javascript:;" class="weui-picker__action" @click="confirm">{{ confirmText }}</a>
@@ -35,12 +35,13 @@ export default {
     slots: {
       type: Array
     },
-    valueKey: String
+    valueKey: String,
+    value: Boolean
   },
 
   data () {
     return {
-      visible: true
+      currentValue: this.value
     }
   },
 
@@ -143,11 +144,21 @@ export default {
     },
 
     cancel () {
-      this.visible = false
+      this.currentValue = false
     },
 
     confirm () {
-      this.visible = false
+      this.currentValue = false
+    }
+  },
+
+  watch: {
+    value (val) {
+      this.currentValue = val
+    },
+
+    currentValue (val) {
+      this.$emit('input', val)
     }
   }
 }

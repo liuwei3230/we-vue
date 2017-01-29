@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <wv-group>
-      <wv-cell title="单列选择器" :value="pickerValue1" is-link @click="showPicker1"></wv-cell>
+      <wv-cell title="单列选择器" :value="pickerValue1" is-link @click.native="showPicker1"></wv-cell>
     </wv-group>
 
     <wv-picker v-model="pickerVisible" :slots="slots"></wv-picker>
@@ -13,7 +13,7 @@ export default {
   data () {
     return {
       pickerValue1: '',
-      pickerVisible: true,
+      pickerVisible: false,
       slots: [
         {
           values: [
