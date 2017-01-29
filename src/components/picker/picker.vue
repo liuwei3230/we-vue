@@ -1,5 +1,5 @@
 <template>
-  <wv-popup is-modal v-show="visible">
+  <wv-popup v-show="visible">
     <div class="weui-picker__hd">
       <a href="javascript:;" class="weui-picker__action" @click="cancel">{{ cancelText }}</a>
       <a href="javascript:;" class="weui-picker__action" @click="confirm">{{ confirmText }}</a>
@@ -40,8 +40,7 @@ export default {
 
   data () {
     return {
-      visible: true,
-      currentValue: this.value
+      visible: true
     }
   },
 
@@ -58,15 +57,20 @@ export default {
 
     slotCount () {
       let slots = this.slots || []
-
       return slots.length
     }
   },
 
   created () {
     this.$on('slotValueChange', this.slotValueChange)
-    // let slots = this.slots || []
+    let slots = this.slots || []
     this.values = []
+    let values = this.values
+    let valueIndexCount = 0
+    slots.forEach(function (slot) {
+      slot.valueIndex = valueIndexCount++
+      values[slot.valueIndex] = (slot.values || [])[slot.defaultIndex || 0]
+    })
   },
 
   methods: {
@@ -143,22 +147,8 @@ export default {
     },
 
     confirm () {
-      // this.visible = false
+      this.visible = false
     }
-  },
-
-  watch: {
-    value (val) {
-      this.currentValue = val
-    },
-
-    currentValue (val) {
-      this.$emit('input', val)
-    }
-  },
-
-  destroyed () {
-    //
   }
 }
 </script>
